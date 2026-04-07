@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Arial; color: #1a1a1a; -webkit-text-stroke: #1a1a1a; background-color: #ffffff}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta charset="UTF-8"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;title&gt;ABR Core Score Predictor&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1">&lt;style&gt;</span></p>
+<p class="p1"><span class="s1">  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }</span></p>
+<p class="p1"><span class="s1">  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a18; min-height: 100vh; padding: 2rem 1rem; }</span></p>
+<p class="p1"><span class="s1">  .container { max-width: 680px; margin: 0 auto; }</span></p>
+<p class="p1"><span class="s1">  .header { margin-bottom: 1.5rem; }</span></p>
+<p class="p1"><span class="s1">  h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }</span></p>
+<p class="p1"><span class="s1">  .sub { font-size: 13px; color: #888780; line-height: 1.5; }</span></p>
+<p class="p1"><span class="s1">  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }</span></p>
+<p class="p1"><span class="s1">  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }</span></p>
+<p class="p1"><span class="s1">  .input-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 10px; padding: 12px 14px; transition: opacity 0.2s; }</span></p>
+<p class="p1"><span class="s1">  .input-card.disabled { opacity: 0.45; }</span></p>
+<p class="p1"><span class="s1">  .toggle-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }</span></p>
+<p class="p1"><span class="s1">  .toggle { width: 34px; height: 20px; border-radius: 10px; border: 0.5px solid #b4b2a9; background: #f1efe8; position: relative; cursor: pointer; transition: background 0.2s, border-color 0.2s; flex-shrink: 0; }</span></p>
+<p class="p1"><span class="s1">  .toggle.on { background: #1D9E75; border-color: #1D9E75; }</span></p>
+<p class="p1"><span class="s1">  .toggle::after { content: ''; width: 14px; height: 14px; border-radius: 50%; background: #888780; position: absolute; top: 2px; left: 2px; transition: left 0.2s, background 0.2s; }</span></p>
+<p class="p1"><span class="s1">  .toggle.on::after { left: 18px; background: #fff; }</span></p>
+<p class="p1"><span class="s1">  .toggle-lbl { font-size: 13px; color: #5f5e5a; font-weight: 500; }</span></p>
+<p class="p1"><span class="s1">  .row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }</span></p>
+<p class="p1"><span class="s1">  .lbl { font-size: 12px; color: #888780; }</span></p>
+<p class="p1"><span class="s1">  .val { font-size: 15px; font-weight: 500; color: #1a1a18; }</span></p>
+<p class="p1"><span class="s1">  input[type=range] { width: 100%; height: 4px; border-radius: 2px; accent-color: #1D9E75; margin: 4px 0 6px; cursor: pointer; }</span></p>
+<p class="p1"><span class="s1">  .r2-tag { font-size: 11px; color: #b4b2a9; }</span></p>
+<p class="p1"><span class="s1">  .result-card { background: #fff; border: 0.5px solid #d3d1c7; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }</span></p>
+<p class="p1"><span class="s1">  .score-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }</span></p>
+<p class="p1"><span class="s1">  .score-big { font-size: 52px; font-weight: 500; line-height: 1; color: #1a1a18; }</span></p>
+<p class="p1"><span class="s1">  .score-range { font-size: 14px; color: #888780; }</span></p>
+<p class="p1"><span class="s1">  .pass-pill { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 500; }</span></p>
+<p class="p1"><span class="s1">  .pass-pill.pass { background: #EAF3DE; color: #27500A; }</span></p>
+<p class="p1"><span class="s1">  .pass-pill.borderline { background: #FAEEDA; color: #633806; }</span></p>
+<p class="p1"><span class="s1">  .pass-pill.fail { background: #FCEBEB; color: #791F1F; }</span></p>
+<p class="p1"><span class="s1">  .gauge-wrap { margin: 4px 0 14px; }</span></p>
+<p class="p1"><span class="s1">  .gauge-track { height: 10px; border-radius: 5px; background: #f1efe8; position: relative; }</span></p>
+<p class="p1"><span class="s1">  .gauge-fill { height: 100%; border-radius: 5px; transition: width 0.35s, background 0.35s; }</span></p>
+<p class="p1"><span class="s1">  .gauge-marker { position: absolute; top: -5px; width: 2px; height: 20px; background: #888780; border-radius: 1px; }</span></p>
+<p class="p1"><span class="s1">  .gauge-labels { display: flex; justify-content: space-between; margin-top: 5px; font-size: 11px; color: #b4b2a9; }</span></p>
+<p class="p1"><span class="s1">  .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }</span></p>
+<p class="p1"><span class="s1">  .metric-mini { background: #f5f5f3; border-radius: 8px; padding: 8px 10px; text-align: center; }</span></p>
+<p class="p1"><span class="s1">  .metric-mini .m-lbl { font-size: 11px; color: #888780; margin-bottom: 2px; }</span></p>
+<p class="p1"><span class="s1">  .metric-mini .m-val { font-size: 16px; font-weight: 500; color: #1a1a18; }</span></p>
+<p class="p1"><span class="s1">  .sources { font-size: 11px; color: #b4b2a9; line-height: 1.6; border-top: 0.5px solid #e8e7e1; padding-top: 10px; }</span></p>
+<p class="p1"><span class="s1">  .footer { font-size: 11px; color: #b4b2a9; text-align: center; margin-top: 1.5rem; }</span></p>
+<p class="p1"><span class="s1">&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;div class="container"&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;div class="header"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;h1&gt;ABR Core Score Predictor&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;p class="sub"&gt;Based on 5 years of RadDiscord survey data (2021–2025, n ≈ 630). Toggle the inputs you have data for — predictions are weighted by each metric's R².&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;div class="grid"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card" id="card-bv"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle on" id="tog-bv" onclick="toggleInput('bv')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;Board Vitals % correct&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;% correct&lt;/span&gt;&lt;span class="val" id="disp-bv"&gt;72%&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-bv" min="40" max="99" step="1" value="72" oninput="update()"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.43 (2025) · strongest BV metric&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card" id="card-dxit"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle on" id="tog-dxit" onclick="toggleInput('dxit')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;DXIT peer rank %ile&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;%ile&lt;/span&gt;&lt;span class="val" id="disp-dxit"&gt;60&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-dxit" min="1" max="99" step="1" value="60" oninput="update()"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.50 (2025) · best single predictor&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card" id="card-abr"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle on" id="tog-abr" onclick="toggleInput('abr')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;ABR practice exam %&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;% correct&lt;/span&gt;&lt;span class="val" id="disp-abr"&gt;75%&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-abr" min="50" max="100" step="1" value="75" oninput="update()"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.54 (2025) · highest R²&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card disabled" id="card-rpi"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle" id="tog-rpi" onclick="toggleInput('rpi')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;RadPrimer Int % correct&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;% correct&lt;/span&gt;&lt;span class="val" id="disp-rpi"&gt;70%&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-rpi" min="40" max="100" step="1" value="70" oninput="update()" disabled&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.25 (2025)&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card disabled" id="card-rpb"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle" id="tog-rpb" onclick="toggleInput('rpb')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;RadPrimer Beg % correct&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;% correct&lt;/span&gt;&lt;span class="val" id="disp-rpb"&gt;75%&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-rpb" min="40" max="100" step="1" value="75" oninput="update()" disabled&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.08 (2025) · weak predictor&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="input-card disabled" id="card-is"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="toggle-row"&gt;&lt;div class="toggle" id="tog-is" onclick="toggleInput('is')"&gt;&lt;/div&gt;&lt;span class="toggle-lbl"&gt;In-service %ile&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="row"&gt;&lt;span class="lbl"&gt;%ile&lt;/span&gt;&lt;span class="val" id="disp-is"&gt;60&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;input type="range" id="sl-is" min="1" max="99" step="1" value="60" oninput="update()" disabled&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="r2-tag"&gt;R² = 0.36 (2021) / 0.32 (2023)&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;div class="result-card"&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="score-row"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;span class="score-big" id="pred-score"&gt;—&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;span class="score-range" id="pred-range"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;span id="pass-pill"&gt;&lt;/span&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="gauge-wrap"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="gauge-track"&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;div class="gauge-fill" id="gauge-fill" style="width: 0%;"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">        &lt;div class="gauge-marker" style="left: 25%;"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="gauge-labels"&gt;&lt;span&gt;200&lt;/span&gt;&lt;span&gt;350 (pass)&lt;/span&gt;&lt;span&gt;500&lt;/span&gt;&lt;span&gt;650&lt;/span&gt;&lt;span&gt;800&lt;/span&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;div class="metrics-row"&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="metric-mini"&gt;&lt;div class="m-lbl"&gt;Active inputs&lt;/div&gt;&lt;div class="m-val" id="n-active"&gt;3&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="metric-mini"&gt;&lt;div class="m-lbl"&gt;Avg R²&lt;/div&gt;&lt;div class="m-val" id="avg-r2"&gt;—&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">      &lt;div class="metric-mini"&gt;&lt;div class="m-lbl"&gt;Pass threshold&lt;/div&gt;&lt;div class="m-val"&gt;350&lt;/div&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">    &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;div class="sources"&gt;Regression equations from RadDiscord Core Exam surveys 2021–2025 (anonymous, voluntary, n ≈ 115–136/year). 2025 equations used by default; in-service uses avg of 2021/2023. Predictions are a weighted average by R². Residual uncertainty ≈ ±60–70 pts (1 SD). Pass threshold = 350 (ABR scaled score). Correlation ≠ causation — informational use only.&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">  &lt;div class="footer"&gt;Made with RadDiscord survey data · Not affiliated with ABR or RadDiscord&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1">&lt;script&gt;</span></p>
+<p class="p1"><span class="s1">const PASS_THRESH = 350, BORDERLINE = 420;</span></p>
+<p class="p1"><span class="s1">const inputs = {</span></p>
+<p class="p1"><span class="s1">  bv:   { active: true,  eq: x =&gt; 10.622*x - 348.37, r2: 0.4308 },</span></p>
+<p class="p1"><span class="s1">  dxit: { active: true,  eq: x =&gt; 2.3419*x + 374.49, r2: 0.4957 },</span></p>
+<p class="p1"><span class="s1">  abr:  { active: true,  eq: x =&gt; 9.5445*x - 259.67, r2: 0.5447 },</span></p>
+<p class="p1"><span class="s1">  rpi:  { active: false, eq: x =&gt; 6.0182*x + 104.04, r2: 0.2477 },</span></p>
+<p class="p1"><span class="s1">  rpb:  { active: false, eq: x =&gt; 3.1496*x + 284.38, r2: 0.0762 },</span></p>
+<p class="p1"><span class="s1">  is:   { active: false, eq: x =&gt; 1.3780*x + 383.04, r2: 0.3350 },</span></p>
+<p class="p1"><span class="s1">};</span></p>
+<p class="p1"><span class="s1">function toggleInput(key) {</span></p>
+<p class="p1"><span class="s1">  inputs[key].active = !inputs[key].active;</span></p>
+<p class="p1"><span class="s1">  document.getElementById('tog-' + key).classList.toggle('on', inputs[key].active);</span></p>
+<p class="p1"><span class="s1">  document.getElementById('card-' + key).classList.toggle('disabled', !inputs[key].active);</span></p>
+<p class="p1"><span class="s1">  document.getElementById('sl-' + key).disabled = !inputs[key].active;</span></p>
+<p class="p1"><span class="s1">  update();</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">function getVal(k) { return parseFloat(document.getElementById('sl-' + k).value); }</span></p>
+<p class="p1"><span class="s1">function update() {</span></p>
+<p class="p1"><span class="s1">  ['bv','dxit','abr','rpi','rpb','is'].forEach(k =&gt; {</span></p>
+<p class="p1"><span class="s1">    const v = getVal(k);</span></p>
+<p class="p1"><span class="s1">    document.getElementById('disp-' + k).textContent = (k==='dxit'||k==='is') ? v : v+'%';</span></p>
+<p class="p1"><span class="s1">  });</span></p>
+<p class="p1"><span class="s1">  const active = Object.keys(inputs).filter(k =&gt; inputs[k].active);</span></p>
+<p class="p1"><span class="s1">  document.getElementById('n-active').textContent = active.length;</span></p>
+<p class="p1"><span class="s1">  if (!active.length) { document.getElementById('pred-score').textContent='—'; document.getElementById('pred-range').textContent=''; document.getElementById('pass-pill').innerHTML=''; document.getElementById('gauge-fill').style.width='0%'; document.getElementById('avg-r2').textContent='—'; return; }</span></p>
+<p class="p1"><span class="s1">  let wSum=0, pSum=0;</span></p>
+<p class="p1"><span class="s1">  active.forEach(k =&gt; { const p=inputs[k].eq(getVal(k)); pSum+=p*inputs[k].r2; wSum+=inputs[k].r2; });</span></p>
+<p class="p1"><span class="s1">  const pred=Math.round(pSum/wSum), avgR2=(wSum/active.length).toFixed(2);</span></p>
+<p class="p1"><span class="s1">  const sd=Math.round(94*Math.sqrt(1-wSum/active.length));</span></p>
+<p class="p1"><span class="s1">  document.getElementById('pred-score').textContent=pred;</span></p>
+<p class="p1"><span class="s1">  document.getElementById('pred-range').textContent=Math.round(pred-sd)+' – '+Math.round(pred+sd)+' (±1 SD)';</span></p>
+<p class="p1"><span class="s1">  document.getElementById('avg-r2').textContent=avgR2;</span></p>
+<p class="p1"><span class="s1">  const pct=Math.min(100,Math.max(0,(pred-200)/600*100));</span></p>
+<p class="p1"><span class="s1">  const fill=document.getElementById('gauge-fill');</span></p>
+<p class="p1"><span class="s1">  fill.style.width=pct.toFixed(1)+'%';</span></p>
+<p class="p1"><span class="s1">  fill.style.background=pred&gt;=BORDERLINE?'#1D9E75':pred&gt;=PASS_THRESH?'#BA7517':'#E24B4A';</span></p>
+<p class="p1"><span class="s1">  const pill=document.getElementById('pass-pill');</span></p>
+<p class="p1"><span class="s1">  pill.innerHTML=pred&gt;=BORDERLINE?'&lt;span class="pass-pill pass"&gt;Likely pass&lt;/span&gt;':pred&gt;=PASS_THRESH?'&lt;span class="pass-pill borderline"&gt;Borderline&lt;/span&gt;':'&lt;span class="pass-pill fail"&gt;At risk&lt;/span&gt;';</span></p>
+<p class="p1"><span class="s1">}</span></p>
+<p class="p1"><span class="s1">update();</span></p>
+<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
+</body>
+</html>
